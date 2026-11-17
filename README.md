@@ -34,7 +34,7 @@ Lightyear is built for **long agent sessions**: many model calls in a row, as in
 - **Short loops are not the target.** On a 4-call agent (our `qa-agent-demo` fraud agent) there is little to optimize, and in our test the overhead outweighed the gain. Measure with a long session, not a short one.
 - **It is not a semantic cache.** The saving comes from fewer and smaller model calls, not from reusing answers.
 - **Providers:** Lightyear routes to Anthropic, OpenAI and Gemini (not Bedrock or Azure OpenAI).
-- **Permissions:** this benchmark runs Claude Code with shell commands allowed without per-command approval (`--permissive`). With a stricter allow-list (only `bun test`), our first Lightyear test could not edit files, so we have not measured Lightyear under strict permissions. How it behaves there is an open question for the Fabric team.
+- **Permissions:** this benchmark runs Claude Code with shell commands allowed without per-command approval (`--permissive`). With a stricter allow-list (only `bun test`), our first Lightyear test could not edit files, so we have not measured Lightyear under strict permissions.
 
 ## What the task is
 
