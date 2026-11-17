@@ -22,7 +22,7 @@ Per run (cost / time): normal $0.348 165 s, $0.349 168 s, $0.548 451 s, $0.390 1
 
 How to read it:
 
-- **Realistic message: about 30-40 % lower cost and tokens, and about 20-30 % less time, on long coding-agent sessions.** This is in line with the ~40 % Postman publishes for Lightyear.
+- **Realistic message: about 30-40 % lower cost and tokens, and about 20-30 % less time, on long coding-agent sessions.** This is in line with what Postman reports in [Lightyear: reducing AI spend](https://fabricgateway.ai/blog/lightyear-reducing-ai-spend/): 40 % cheaper and 31 % faster on average across long-horizon benchmarks (DeepSWE, TerminalBench and others), run with Claude Code and Codex on Opus 5.5 and GPT-6.1-Sol. Our task is much smaller and uses Sonnet 4.5, so treat the match as a sanity check, not a confirmation of their numbers.
 - It is an average, not a guarantee: in 1 of 5 Lightyear runs there was no saving ($0.492, same as the expensive normal runs). Four of five were between $0.24 and $0.27.
 - Cost is Claude Code's own estimate (`total_cost_usd`). Cross-check it in Fabric Analytics (LLM tab) for the provider-side number.
 - One task, one model, 5 runs per route. Measure on your own workload before promising a figure.
