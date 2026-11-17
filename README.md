@@ -27,12 +27,14 @@ How to read it:
 - Cost is Claude Code's own estimate (`total_cost_usd`). Cross-check it in Fabric Analytics (LLM tab) for the provider-side number.
 - One task, one model, 5 runs per route. Measure on your own workload before promising a figure.
 
-### When it does NOT help (tested)
+### Where it pays off
 
-- **Short agent loops.** On a 4-call Mastra fraud-detection agent (our `qa-agent-demo`), Lightyear cost about 2.5x more ($0.173 vs $0.069 median) and was erratic (5 to 15 steps). It is built for long multi-request sessions.
-- **Restricted permissions.** Lightyear's code mode drives file edits through shell commands. With Claude Code allowed to run only `bun test`, it could not edit files and solved 5/50 tests. It needs shell commands allowed without per-command approval (see `--permissive`). Ask Fabric what the fallback is.
-- **Other providers.** Lightyear only routes to Anthropic, OpenAI and Gemini (not Bedrock or Azure OpenAI).
-- It is **not a semantic cache**. The saving comes from fewer and smaller model calls, not from reusing answers.
+Lightyear is built for **long agent sessions**: many model calls in a row, as in a coding agent working through a multi-step task. That is where the saving shows up (this benchmark: 38 turns, about 3 minutes).
+
+- **Short loops are not the target.** On a 4-call agent (our `qa-agent-demo` fraud agent) there is little to optimize, and in our test the overhead outweighed the gain. Measure with a long session, not a short one.
+- **It is not a semantic cache.** The saving comes from fewer and smaller model calls, not from reusing answers.
+- **Providers:** Lightyear routes to Anthropic, OpenAI and Gemini (not Bedrock or Azure OpenAI).
+- **Permissions:** this benchmark runs Claude Code with shell commands allowed without per-command approval (`--permissive`). With a stricter allow-list (only `bun test`), our first Lightyear test could not edit files, so we have not measured Lightyear under strict permissions. How it behaves there is an open question for the Fabric team.
 
 ## What the task is
 
