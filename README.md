@@ -34,7 +34,7 @@ Lightyear is built for **long agent sessions**: many model calls in a row, as in
 - **Short loops are not the target.** On a 4-call agent (our `qa-agent-demo` fraud agent) there is little to optimize, and in our test the overhead outweighed the gain. Measure with a long session, not a short one.
 - **It is not a semantic cache.** The saving comes from fewer and smaller model calls, not from reusing answers.
 - **Providers:** Lightyear routes to Anthropic, OpenAI and Gemini (not Bedrock or Azure OpenAI).
-- **Permissions:** this benchmark runs Claude Code with shell commands allowed without per-command approval (`--permissive`). With a stricter allow-list (only `bun test`), our first Lightyear test could not edit files, so we have not measured Lightyear under strict permissions.
+- **Permissions:** Lightyear applies file edits through shell commands (the default in Claude Code 2.1.221 and later). Claude Code therefore needs a shell tool, and in a permission mode that asks you approve those commands as they come, as you would approve any shell command. The fallback to the normal Edit and Write tools applies only when the shell tool is missing or disabled. This benchmark allows shell commands (`--permissive`). With an allow-list of only `bun test`, a headless run cannot approve them and our Lightyear run solved 5/50 tests. Claude Code's `auto` permission mode (`--permission-mode auto`) is the recommended setup for Lightyear; we have not measured it here.
 
 ## What the task is
 
